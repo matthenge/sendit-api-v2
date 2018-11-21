@@ -8,3 +8,4 @@ def create_app():
     create_tables()
 
     return app
+    

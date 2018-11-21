@@ -97,6 +97,3 @@ These instructions will get you a copy of the project running on your local mach
 ## Author
 
 James Maruhi
-
-
-

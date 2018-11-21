@@ -3,13 +3,10 @@ import os
 import psycopg2
 
 
-db_url = os.getenv('DB_URL')
+db_url = os.getenv("DB_URL")
 def connection(db_url):
     conn = psycopg2.connect(db_url)
     return conn
-
-
-
 
 def init_db():
     conn = connection(db_url)
@@ -33,8 +30,8 @@ def tables():
     firstname varchar NOT NULL,
     lastname varchar NOT NULL,
     user_role varchar,
-    username varchar,
-    email varchar NOT NULL,
+    username varchar NOT NULL UNIQUE,
+    email varchar NOT NULL UNIQUE,
     password varchar,
     date timestamp with time zone DEFAULT ('now'::text)::date NOT NULL
     )"""
@@ -52,4 +49,3 @@ def tables():
     queries = [userdb, orderdb]
     return queries
     
-
