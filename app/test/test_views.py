@@ -24,8 +24,8 @@ class TestViews(unittest.TestCase):
             "firstname":"James",
             "lastname":"Martin",
             "user_role":"Admin",
-            "username":"senge",
-            "email":"senge@yahoo.com",
+            "username":"archie",
+            "email":"archie@yahoo.com",
             "password":"andela"
         }
     def test_post(self):

@@ -25,17 +25,12 @@ class UserModel:
         """Returning all users"""
         return self.db
 
-    def get_one_user(self, username):
-        """Return a specific user"""
-        for user in self.db:
-            if user['username'] == str(username):
-                return {
-                    "message": "User found", "User Details": user
-                }, 200
-        return {
-            "Error": "User not found!"
-        }, 200
-
-
-
- 
+    def get_user(self, email):
+        cur = self.db.cursor
+        cur.execute("SELECT * FROM users WHERE email = %s", (email,))
+        user = cur.fetchone()
+        if user is None:
+            return None
+        self.db.commit()
+        return user
+        

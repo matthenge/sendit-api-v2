@@ -6,6 +6,16 @@ python:
 install:
   - pip install -r requirements.txt
 
+<<<<<<< Updated upstream
+=======
+services:
+  - postgresql
+
+before script:
+  - psql -c 'create database sendit_test;' -U postgres
+  - export DB_URL="dbname='sendit_test' host='localhost' port='5432' user='postgres' password=''"
+
+>>>>>>> Stashed changes
 script:
   - pytest --cov=app/
 

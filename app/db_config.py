@@ -31,17 +31,22 @@ def tables():
     user_role varchar,
     username varchar NOT NULL,
     email varchar NOT NULL,
+<<<<<<< Updated upstream
     password varchar NOT NULL,
+=======
+    password varchar,
+>>>>>>> Stashed changes
     date timestamp with time zone DEFAULT ('now'::text)::date NOT NULL
     )"""
 
     orderdb = """CREATE TABLE IF NOT EXISTS orders (
     order_id serial PRIMARY KEY NOT NULL,
     pickup_location varchar NOT NULL,
+    current_location varchar NOT NULL,
     destination varchar NOT NULL,
+    price varchar NOT NULL,
     status varchar NOT NULL,
-    price numeric NOT NULL,
-    weight numeric NOT NULL,
+    user_id varchar NOT NULL,
     date timestamp with time zone DEFAULT ('now'::text)::date NOT NULL
     )"""
 
