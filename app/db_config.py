@@ -3,25 +3,23 @@ import os
 import psycopg2
 
 
-db_url = os.getenv('DB_URL')
-conn = psycopg2.connect('db_url')
+db_url = os.getenv('TEST_DB_URL')
 
+def connection(db_url):
+        conn = psycopg2.connect(db_url)
+        return conn
 
 def init_db():
-    conn = connection('db_url')
+    conn = connection(db_url)
     return conn
 
 def create_tables():
-    con = connection('db_url')
+    con = connection(db_url)
     curr = con.cursor()
     queries = tables()
     for query in queries:
         curr.execute(query)
         con.commit()
-
-def destroy_tables():
-    userdb = """DROP TABLE IF EXISTS users CASCADE"""
-    orderdb = """DROP TABLE IF EXISTS orders CASCADE"""
 
 def tables():
     userdb = """CREATE TABLE IF NOT EXISTS users (
@@ -31,11 +29,7 @@ def tables():
     user_role varchar,
     username varchar NOT NULL,
     email varchar NOT NULL,
-<<<<<<< Updated upstream
-    password varchar NOT NULL,
-=======
     password varchar,
->>>>>>> Stashed changes
     date timestamp with time zone DEFAULT ('now'::text)::date NOT NULL
     )"""
 
@@ -52,5 +46,3 @@ def tables():
 
     queries = [userdb, orderdb]
     return queries
-    
-

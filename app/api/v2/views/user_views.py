@@ -1,9 +1,10 @@
 """User views"""
 from flask_restful import Resource, reqparse
 from app.db_config import init_db
-from app.api.v2.models.user_models import UserModel
+from app.api.v2.models.user_models import UserModel, FetchUser
 
 users = UserModel()
+userdetails = FetchUser()
 
 class UserRegistration(Resource):
     """Class for user registration"""
@@ -31,3 +32,16 @@ class UserRegistration(Resource):
         return {
             "message": "Sign up successful"
         }, 201
+
+class UserLogin(Resource):
+    def __init__(self):
+        self.login_parser = reqparse.RequestParser()
+        self.login_parser.add_argument("email", type=str, required=True)
+
+    def post(self):
+        data = self.login_parser.parse_args()
+        email = data['email']
+        userdetails.get_user(email)
+        return {
+            "message": "login successful"
+        }, 200
